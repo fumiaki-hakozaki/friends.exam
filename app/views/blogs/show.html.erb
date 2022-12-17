@@ -1,5 +1,7 @@
 <h1>ブログ詳細画面</h1>
 <P>タイトル: <%= @blog.title %></p>
 <p>内容: <%= @blog.content %></p>
+<p>画像: <%= image_tag @blog.image.url %>
+
 
 <%= link_to "ブログ一覧画面にもどる", blogs_path %>
