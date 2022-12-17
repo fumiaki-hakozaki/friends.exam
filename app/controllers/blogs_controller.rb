@@ -8,8 +8,8 @@ class BlogsController < ApplicationController
   end
 
   def create
-    @blog = Blog.new(blog_params)
-    if params[;back]
+    @blog = current_user.blogs.build(blog_params)
+    if params[:back]
       render :new
     else
       if @blog.save
@@ -31,19 +31,20 @@ class BlogsController < ApplicationController
   def update
     @blog = Blog.find(params[:id])
     if @blog.update(blog_params)
-      redirect_to blog_path, "ブログを編集しました！！"
+      redirect_to blogs_path, notice: "ブログを編集しました！！"
     else
       render :edit
     end
   end
 
   def destroy
-    @blog.destroy
-    redirect_to blogs_path, notice"ブログを削除しました！"
+  @blog = Blog.find(params[:id])
+  @blog.destroy
+  redirect_to blogs_path, notice:"ブログを削除しました！"
   end
 
   def confirm
-    @blog = Blog.new(blog_params)
+    @blog = current_user.blogs.build(blog_params)
     render :new if @blog.invalid?
   end
 
