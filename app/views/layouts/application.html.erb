@@ -11,6 +11,13 @@
   </head>
 
   <body>
+  <header>
+        <ul class="header-logo" >
+          <li>
+            <%= image_tag 'image1.png', :size => '300x150'%>
+          </li>
+        </ul>
+  </header>
     <% flash.each do |key, value| %>
       <%= content_tag(:div, value, class: "#{key}") %>
     <% end %>
@@ -22,7 +29,15 @@
       <%= link_to "Sign up", new_user_path %>
       <%= link_to "Login", new_session_path %>
     <% end %>
-
+    
     <%= yield %>
+    
+      <footer>
+        <ul class="footer-logo" >
+          <li>
+            友達繋がりアプリケーション　課題
+          </li>
+        </ul>
+      </footer>
   </body>
 </html>
